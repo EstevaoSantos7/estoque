@@ -1,0 +1,51 @@
+#nome {
+    background-color: #a6a1a1;
+    border: 0px;
+    width: 70%;
+    border-radius: 40px;
+    padding: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+#nome:hover{
+    transform: scale(1.1);
+    transition: ease-in-out 0.5s;
+}
+#quantidade{
+    background-color: #a6a1a1;
+    border: 0px;
+    width: 70%;
+    border-radius: 40px;
+    padding: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+#quantidade:hover{
+    transform: scale(1.1);
+    transition: ease-in-out 0.5s;
+}
+#descricao {
+    background-color: #a6a1a1;
+    border: 0px;
+    width: 70%;
+    border-radius: 40px;
+    padding: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+#descricao:hover{
+    transform: scale(1.1);
+    transition: ease-in-out 0.5s;
+}
+#titulo {
+    margin-bottom: 14px;
+    font-family: "Poppins", sans-serif;
+    font-size: 32px;
+}
+.cadastra a{
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: #fff;
+    background: linear-gradient(to right, rgb(80, 29, 231), rgb(57, 109, 192), rgb(82, 200, 226), rgb(85, 239, 241));
+    padding: 6px;
+}

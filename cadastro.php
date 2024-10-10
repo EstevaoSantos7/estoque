@@ -3,8 +3,8 @@
 
     $mensagem_sucesso = "";
     $mensagem_erro = "";
-
-    if(isset($_SESSION['usuario_id'])){
+    session_start();
+    if (isset($_SESSION['usuario_id'])) {
         header("Location: dashboard.php");
         exit();
     }
@@ -44,38 +44,45 @@
     <html lang="pt-br">
 
     <head>
-        <link rel="stylesheet" href="./css/cadastro.css">
+        <link rel="stylesheet" href="./css/reset.css">
+        <link rel="stylesheet" href="./css/cadastrar.css">
+        <link rel="stylesheet" href="./css/stux.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Cadastro</title>
     </head>
 
     <body>
         <div class="formo">
-            <form action="" method="POST">
-                <h2>Cadastro de usuarios</h2>
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required><br>
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="email" required><br>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required><br>
+            <div class="formulario">
+                <form action="" method="POST">
+                    <h2 id="usuario">Cadastro de usuarios</h2>
+                    <label for="nome"></label>
+                    <input placeholder="Nome" type="text" id="nome" name="nome" required><br>
+                    <label for="email"></label>
+                    <input placeholder="Email" type="text" id="email" name="email" required><br>
+                    <label for="senha"></label>
+                    <input placeholder="Senha" type="password" id="senha" name="senha" required><br>
+            
+            <?php
+            if ($mensagem_sucesso): ?>
+                <p><?php echo $mensagem_sucesso; ?></p>
 
-<?php
-if($mensagem_sucesso):?>
-<p><?php echo $mensagem_sucesso; ?></p>
+            <?php endif; ?>
+            <?php
+            if ($mensagem_erro): ?>
+                <p><?php echo $mensagem_erro; ?></p>
 
-<?php endif; ?>
-<?php
-if($mensagem_erro):?>
-<p><?php echo $mensagem_erro; ?></p>
+            <?php endif; ?>
 
-<?php endif; ?>
-
-                <input type="submit" value="Cadastrar">
-                <p>Ja tem conta? <a href="index.php">Ira para login</a></p>
+            <input id="cadastros" type="submit" value="Cadastrar">
+            <p class="cadastra">Já tem conta? <a class="cadastra" href="index.php">Ir para login</a></p>
 
             </form>
+            </div>
         </div>
     </body>
 

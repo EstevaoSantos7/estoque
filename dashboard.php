@@ -17,7 +17,8 @@ if (!isset($_SESSION['usuario_id'])) {
  
 require_once 'includes/config.php'; // Inclua a conexão correta aqui
  
-$conn->close();
+$sql = "SELECT * from produtos";
+$resultado = $conn-> query($sql);
 ?>
  
 <!DOCTYPE html>
@@ -32,7 +33,25 @@ $conn->close();
 <body>
   <header>
     <a href="?logout=true">Sair</a>
+    <a href="cadastro-produto.php">Cadastro produtos</a>
   </header>
+  <main>
+<?php if($resultado->num_rows > 0): ?>
+<?php while ($produto = $resultado->fetch_assoc()): ?>
+  <div>
+<h3>Descrição:<?php echo $produto['descricao'] ?></h3>
+<h3>Qunatidade:<?php echo $produto['qunatidade'] ?></h3>
+<buton>Editar</buton>
+<buton>Excuir</buton>
+  </div>
+<?php endwhile ?>
+<?php else: ?>
+  <p>Nenhum produto cadastrado.</p>
+<?php endif; ?>
+<?php $conn->close(); ?>
+
+
+  </main>
 </body>
  
 </html>

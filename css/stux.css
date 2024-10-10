@@ -1,0 +1,111 @@
+body {
+    background: linear-gradient(to bottom, rgb(69, 12, 241), rgb(56, 118, 216), rgb(78, 137, 231), rgb(82, 200, 226), rgb(82, 200, 226), rgb(85, 239, 241));
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formo {
+    flex-direction: column;
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 420px;
+}
+
+.formo:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.formulario {
+    padding-bottom: 8px;
+    width: 420px;
+    text-align: center;
+    background-color: #fff;
+
+}
+
+.formo:hover {
+    transform: scale(1.02);
+    transition: ease-in-out 0, 5s;
+}
+
+#usuario {
+    font-family: "Poppins", sans-serif;
+    font-size: 25px;
+    margin: 15px 0px;
+    font-weight: 500;
+}
+
+#email {
+    color: #fff;
+    background-color: #a6a1a1;
+    border: 0px;
+    width: 70%;
+    border-radius: 40px;
+    padding: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+#email:hover {
+    transform: scale(1.1);
+    transition: ease-in-out 0.5s;
+}
+
+#senha {
+    background-color: #a6a1a1;
+    border: 0px;
+    width: 70%;
+    border-radius: 40px;
+    padding: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+#senha:hover {
+    transform: scale(1.1);
+    transition: ease-in-out 0.5s;
+}
+
+#login {
+    border: 0px;
+    font-family: "Poppins", sans-serif;
+    margin: 12px 0px;
+    font-size: 21px;
+    font-weight: bold;
+    width: 75%;
+    padding: 2px;
+    border-radius: 50px;
+    background: linear-gradient(to right, rgb(80, 29, 231), rgb(57, 109, 192), rgb(82, 200, 226), rgb(85, 239, 241));
+    color: #fff;
+}
+
+#login:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.cadastra {
+    margin: 12px 4px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cadastra a{
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: #fff;
+    background: linear-gradient(to right, rgb(80, 29, 231), rgb(57, 109, 192), rgb(82, 200, 226), rgb(85, 239, 241));
+    padding: 6px;
+}
+
+::placeholder {
+    color: #fff;
+}

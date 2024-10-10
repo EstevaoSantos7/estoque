@@ -1,0 +1,26 @@
+.titulo {
+   
+    /* background: linear-gradient(to bottom, rgb(80, 29, 231), rgb(57, 109, 192), rgb(82, 200, 226), rgb(85, 239, 241)); */
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: #fff;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 45px;
+}
+.titulo p {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+}
+
+#titulo {
+    margin-bottom: 14px;
+    font-family: "Poppins", sans-serif;
+    font-size: 32px;
+}
+.formulario{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
