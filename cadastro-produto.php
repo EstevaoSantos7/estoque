@@ -1,85 +1,56 @@
-    <?php
-    require_once 'includes/config.php';
+<?php
+session_start();
 
-    $mensagem_sucesso = "";
-    $mensagem_erro = "";
-    session_start();
-    if (!isset($_SESSION['usuario_id'])) {
-        header("Location: index.php");
-        exit();
-    }
+// Desconectar
+if (isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+    header("location: index.php");
+    exit();
+}
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $nome = $_POST['nome'];
-        $descricao = $_POST['descricao'];
-        $quantidade = intval($_POST['quantidade']);
+// Verificar se existe usuário logado
+if (!isset($_SESSION['usuario_id'])) {
+    header("location: index.php");
+    exit();
+}
 
-        $sql_verifica = "SELECT * FROM produtos WHERE nome = ?";
-        $stmt_verifica = $conn->prepare($sql_verifica);
-        $stmt_verifica->bind_param('s', $nome);
-        $stmt_verifica->execute();
-        $resultado = $stmt_verifica->get_result();
+require_once 'includes/config.php'; // Inclua a conexão correta aqui
 
-        if ($resultado->num_rows > 0) {
-            $mensagem_erro = "Este produto ja esta cadastrado.";
-        } else {
-            $sql = "INSERT INTO usuarios (nome, descricao, quantidade) Values (?,?,?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('ssi', $nome, $descricao, $quantidade);
+$sql = "SELECT * FROM produtos";
+$resultado = $conn->query($sql);
+?>
 
-            if ($stmt->execute()) {
-                $_SESSION['mensagem-sucesso'] = "Cadastro realizado com sucesso";
-                header("Location: cadastro-produto.php");
-                exit();
-            } else {
-                $mensagem_erro = "Erro ao cadastrar " . $conn->error;
-            }
-        }
-        $stmt->close();
-        $conn->close();
-    }
-    ?>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-    <!DOCTYPE html>
-    <html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-    <head>
-        <link rel="stylesheet" href="./css/reset.css">
-        <link rel="stylesheet" href="./css/stux.css">
-        <link rel="stylesheet" href="./css/usuarios.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastro de Produtos</title>
-    </head>
+<body>
+    <header>
+        <a href="?logout=true">Sair</a>
+        <a href="cadastro-produto.php">Cadastro produtos</a>
+    </header>
+    <main>
+        <?php if ($resultado->num_rows > 0): ?>
+            <?php while ($produto = $resultado->fetch_assoc()): ?>
+                <div>
+                    <h3>Nome: <?php echo $produto['nome']; ?></h3>
+                    <h3>Descrição: <?php echo $produto['descricao']; ?></h3>
+                    <h3>Quantidade: <?php echo $produto['quantidade']; ?></h3>
+                    <a href="excluir-produto.php?id=<?php echo $produto['id']; ?>">Excluir</a>
+                    <a href="editar-produto.php?id=<?php echo $produto['id']; ?>">Editar</a>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>Nenhum produto cadastrado.</p>
+        <?php endif; ?>
+        <?php $conn->close(); ?>
+    </main>
+</body>
 
-    <body>
-        <div class="formo">
-            <div class="formulario">
-                <form action="" method="POST">
-                    <h2 id="titulo">Cadastro de Produtos</h2>
-                    <label for="nome"></label>
-                    <input placeholder="Nome" type="text" id="nome" name="nome" required>
-                    <label for="descricao"></label>
-                    <input placeholder="Descriçao" type="text" id="descricao" name="descricao" required>
-                    <label for="quantidade"></label>
-                    <input placeholder="Quantidade" type="text" id="quantidade" name="quantidade" required>
-
-                    <?php
-                    if ($mensagem_sucesso): ?>
-                        <p><?php echo $mensagem_sucesso; ?></p>
-
-                    <?php endif; ?>
-                    <?php
-                    if ($mensagem_erro): ?>
-                        <p><?php echo $mensagem_erro; ?></p>
-
-                    <?php endif; ?>
-
-                    <a class="cadastra" href="dashboard.php">Ira para Dashboard</a>
-
-                </form>
-            </div>
-        </div>
-    </body>
-
-    </html>
+</html>

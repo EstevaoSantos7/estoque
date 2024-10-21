@@ -18,7 +18,7 @@ if (!isset($_SESSION['usuario_id'])) {
 require_once 'includes/config.php'; // Inclua a conexão correta aqui
  
 $sql = "SELECT * from produtos";
-$resultado = $conn-> query($sql);
+$resultado = $conn->query($sql);
 ?>
  
 <!DOCTYPE html>
@@ -33,25 +33,28 @@ $resultado = $conn-> query($sql);
 <body>
   <header>
     <a href="?logout=true">Sair</a>
-    <a href="cadastro-produto.php">Cadastro produtos</a>
+    <a href="cadastro-produto.php">Cadastrar produto</a>
   </header>
   <main>
-<?php if($resultado->num_rows > 0): ?>
-<?php while ($produto = $resultado->fetch_assoc()): ?>
-  <div>
-<h3>Descrição:<?php echo $produto['descricao'] ?></h3>
-<h3>Qunatidade:<?php echo $produto['qunatidade'] ?></h3>
-<buton>Editar</buton>
-<buton>Excuir</buton>
-  </div>
-<?php endwhile ?>
-<?php else: ?>
-  <p>Nenhum produto cadastrado.</p>
-<?php endif; ?>
-<?php $conn->close(); ?>
+    <?php if($resultado->num_rows > 0) : ?>
+    <?php while($produto= $resultado-> fetch_assoc()): ?>
+      <div>
 
+        <h3>Nome:<?php echo $produto['nome']; ?></h3>
+        <h3>Descrição:<?php echo $produto['descricao']; ?></h3>
+        <h3>Quantidade:<?php echo $produto['quantidade']; ?></h3>
+        
+        <a href="excluir-produto.php?id=<?php echo $produto['id']?>">Excluir</a>
+        <a href="editar-produto.php?id=<?php echo $produto['id']?>">Editar</a>
+
+      </div>
+    <?php endwhile ?>
+    <?php else: ?>
+      <p>Nenhum produto cadastrado.</p>
+    <?php endif; ?>
+    <?php $conn->close(); ?>
 
   </main>
 </body>
- 
+ 
 </html>
